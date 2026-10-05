@@ -753,7 +753,7 @@ def existing_names():
     idx_path = IDX
     if os.path.exists(idx_path):
         for row in json.load(open(idx_path)):
-            names.add(row["name"])
+            names.add(row["n"])
     return names
 
 def append_recipes(recipes):
