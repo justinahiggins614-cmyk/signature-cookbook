@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Sides recipes — The Signature Cookbook</title>
+<meta name="description" content="The Signature Cookbook chapter: Sides.">
+<link rel="canonical" href="https://justinahiggins614-cmyk.github.io/signature-cookbook/">
+<style>
+:root{--tom:#e8833a;--tom2:#f5b06e;--bg:#241610;--panel:#3a2417;--line:#6b4426;--txt:#f7ecd9;--dim:#c9a87f}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--txt);background:var(--bg);min-height:100vh}
+.wrap{max-width:1060px;margin:0 auto;padding:14px 12px 40px}
+.kicker{letter-spacing:.25em;font-size:.72rem;color:var(--tom);margin:10px 0 4px}
+h1{font-size:1.7rem;margin:.1em 0}
+h2{color:var(--tom2);font-size:1.3rem;margin:1.2em 0 .4em}
+h3{color:var(--tom2)}
+p{line-height:1.6}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.tabs a{flex:1 1 130px;text-align:center;text-decoration:none;color:var(--txt);background:var(--panel);border:2px solid var(--line);border-radius:999px;padding:11px 8px;font-weight:700;font-size:.92rem}
+.tabs a.active{background:var(--tom);color:#241610;border-color:var(--tom)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;margin:12px 0}
+.card h3{margin:.2em 0}
+.btn{display:inline-block;background:var(--tom);color:#241610;border:0;border-radius:999px;padding:12px 24px;font-weight:800;font-size:1rem;cursor:pointer;text-decoration:none;margin:6px 6px 6px 0;font-family:inherit}
+.btn.ghost{background:transparent;color:var(--tom2);border:2px solid var(--tom)}
+.btn.sm{padding:9px 16px;font-size:.9rem}
+.btn.big{font-size:1.2rem;padding:15px 36px}
+.hint{color:var(--dim);font-size:.85rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.jahnet{margin:26px 0 10px;padding:14px;border:1px solid var(--line);border-radius:14px;background:#2c1c11;font-size:.82rem;line-height:2.1}
+.jahnet-t{color:var(--tom);font-weight:800;letter-spacing:.2em;margin-right:10px}
+.jahnet a{color:var(--dim);text-decoration:none;margin:0 8px 0 0;white-space:nowrap}
+.jahnet .here{display:inline-block;background:#4a2c12;color:var(--tom2);border:1px solid var(--tom);border-radius:999px;padding:2px 12px;font-weight:800;margin:4px 0}
+footer{color:#8a6a4a;font-size:.78rem;text-align:center;margin:20px 0}
+.recipe{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;margin:14px 0}
+.recipe h2{margin:.1em 0}
+.rmeta{color:var(--dim)}
+.ings li,.steps li{margin:7px 0;line-height:1.55}
+.steps li::marker{color:var(--tom);font-weight:800}
+.rtools{margin:10px 0}
+.az{margin:8px 0}
+.az summary{cursor:pointer;font-weight:800;color:var(--tom2);padding:10px;background:#2c1c11;border:1px solid var(--line);border-radius:10px;margin:4px 0}
+.az .row{padding:8px 4px;border-bottom:1px dashed #4a2f1a;font-size:.92rem}
+.az .row a{color:var(--txt);text-decoration:none}
+.az .row a:hover{color:var(--tom2)}
+.best{border:2px solid var(--tom);background:#3d2a14}
+input[type=text]{background:#1c100a;color:var(--txt);border:2px solid var(--line);border-radius:10px;padding:11px 13px;font-size:.95rem;width:100%}
+.rlink{color:var(--txt);text-decoration:none}
+.rlink:hover{color:var(--tom2)}
+.hits li{margin:6px 0}
+.hits a{color:var(--tom2)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<p class="kicker">SITE 35 OF 35 · THE JAH NETWORK</p>
+<h1>📖 The Signature Cookbook</h1>
+<p class="hint">A million recipes, organized like a cookbook. Free forever.</p>
+</header>
+<nav class="tabs" aria-label="Site sections"><a href="index.html">🏠 Main</a><a href="appetizers.html">🥗 Appetizers</a><a href="soups.html">🍲 Soups & Salads</a><a href="mains.html">🍽️ Mains</a><a href="sides.html" class="active">🥔 Sides</a><a href="breads.html">🍞 Breads</a><a href="desserts.html">🍰 Desserts</a><a href="drinks.html">🥤 Drinks</a><a href="breakfast.html">🍳 Breakfast</a><a href="snacks.html">🍿 Snacks</a><a href="archive.html">🗂️ 1M Archive</a></nav>
+
+<div class="card">
+<h3>🥔 Sides</h3>
+<p>The supporting cast that steals the show.</p>
+<p class="hint"><b id="chapCount">67</b> recipes in this chapter · <span id="chapSecs"></span></p>
+</div>
+<div id="chapList"><p class="hint">Loading recipes…</p></div>
+<script>
+cbLoadIdx().then(function(rows){
+  var mine = rows.filter(function(r){return r.c === "Sides"});
+  var secs = {};
+  mine.forEach(function(r){ (secs[r.s] = secs[r.s] || []).push(r); });
+  document.getElementById("chapCount").textContent = mine.length;
+  document.getElementById("chapSecs").textContent = Object.keys(secs).length + " sections";
+  var h = "";
+  Object.keys(secs).sort().forEach(function(s){
+    h += '<details class="az" open><summary>📑 ' + cbesc(s) + ' (' + secs[s].length + ')</summary>';
+    secs[s].forEach(function(r){
+      h += '<div class="row"><a class="rlink" href="archive.html?recipe=' + r.id + '"><b>' + cbesc(r.n) + '</b></a>' +
+           ' <span class="hint">⏱ ' + r.t + ' min · ' + cbesc(r.d) + '</span></div>';
+    });
+    h += '</details>';
+  });
+  document.getElementById("chapList").innerHTML = h || '<p class="hint">No recipes yet in this chapter.</p>';
+}).catch(function(){ document.getElementById("chapList").innerHTML = '<p class="hint">Could not load recipes.</p>'; });
+</script>
+<div class="jahnet"><span class="jahnet-t">THE JAH NETWORK</span><a href="https://justinahiggins614-cmyk.github.io/signature-math/">1 Signature Math</a><a href="https://justinahiggins614-cmyk.github.io/jah-calculator/">2 Signature Universal Paradox Immune Calculator</a><a href="https://justinahiggins614-cmyk.github.io/jah-dictionary/">3 The Signature Dictionary</a><a href="https://justinahiggins614-cmyk.github.io/jah-wiki/">4 JAH Wiki</a><a href="https://justinahiggins614-cmyk.github.io/jah-n-wiki-leaks/">5 JAH-N Wiki Leaks</a><a href="https://justinahiggins614-cmyk.github.io/signature-llama/">6 Signature Llama: The Fully Cyber Utilizable AI</a><a href="https://justinahiggins614-cmyk.github.io/jah-ai-models/">7 The Signature AI Phone Book</a><a href="https://justinahiggins614-cmyk.github.io/cyber-patent-catalog/">8 Globally Rejustered Patent Catalog</a><a href="https://justinahiggins614-cmyk.github.io/signature-one-archive/specs.html">9 Signature Spec Catalog Pending Patents</a><a href="https://justinahiggins614-cmyk.github.io/jah-computer-systems/">10 The Signature PC System Depository</a><a href="https://justinahiggins614-cmyk.github.io/signature-books/">11 The Signature Book Depository</a><a href="https://justinahiggins614-cmyk.github.io/signature-comics/">12 The Signature Comic Store</a><a href="https://justinahiggins614-cmyk.github.io/signature-newspapers/">13 The Signature Global Newspaper Archive</a><a href="https://justinahiggins614-cmyk.github.io/signature-backend/">14 The Signature AI Mix and Match Generator</a><a href="https://justinahiggins614-cmyk.github.io/signature-boundless-generators/">15 The Signature Boundless Generator Archive</a><a href="https://justinahiggins614-cmyk.github.io/signature-ai-mixlab/">16 The Signature AI Mix Lab</a><a href="https://justinahiggins614-cmyk.github.io/signature-ai-olypics/">17 AI Olympics</a><a href="https://justinahiggins614-cmyk.github.io/signature-chip-maker/">18 The Signature Computer Chip Maker and Archive</a><a href="https://justinahiggins614-cmyk.github.io/signature-app-archive/">19 The Signature App Archive</a><a href="https://justinahiggins614-cmyk.github.io/signature-ai-robot-matcher/">20 The Signature AI Robot Matcher</a><a href="https://justinahiggins614-cmyk.github.io/signature-experiment-solver/">21 The Signature Experiment Solver</a><a href="https://justinahiggins614-cmyk.github.io/signature-ai-image-video-maker/">22 Signature AI Pixel</a><a href="https://justinahiggins614-cmyk.github.io/signature-ai-song-maker/">23 Signature Music Studio</a><a href="https://justinahiggins614-cmyk.github.io/signature-fixit/">24 The Signature Mr Fix-It</a><a href="https://justinahiggins614-cmyk.github.io/signature-university/">25 The Signature University</a><a href="https://justinahiggins614-cmyk.github.io/signature-cyber-mega-mall/">26 The Signature Cyber Mega-Mall</a><a href="https://justinahiggins614-cmyk.github.io/signature-3d-print/">27 The Signature 3D Print Mega Mall</a><a href="https://justinahiggins614-cmyk.github.io/signature-earth/">28 Signature Earth</a><a href="https://justinahiggins614-cmyk.github.io/signature-flight-school/">29 The Signature Flight School</a><a href="https://justinahiggins614-cmyk.github.io/signature-game-store/">30 The Signature Game Store</a><a href="https://justinahiggins614-cmyk.github.io/signature-website-creator/">31 Signature Website Creator</a><a href="https://justinahiggins614-cmyk.github.io/signature-antivirus/">32 The Signature Antivirus</a><a href="https://justinahiggins614-cmyk.github.io/signature-os-updater/">33 The Signature OS Updater</a><a href="https://justinahiggins614-cmyk.github.io/signature-space-mapping/">34 Signature Space Mapping</a><br><span class="here">35 The Signature Cookbook — YOU ARE HERE</span></div>
+<footer>The Signature Cookbook · original Signature recipes · every instruction written fresh · free forever — no account, no catch</footer>
+</div>
+<style>
+#jahWelcome,#jahGuide,#jahGuideBtn{--amber:#e8833a;--amber2:#f5b06e}
+#jahGuideBtn{position:fixed;top:14px;right:14px;z-index:99900;min-width:48px;min-height:48px;border-radius:24px;border:1px solid var(--amber);background:#2c1c11;color:var(--amber2);font-weight:700;font-size:18px;padding:10px 16px;cursor:pointer}
+#jahGuideBtn:hover{background:var(--amber);color:#241610}
+#jahWelcome{position:fixed;inset:0;z-index:100000;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.75)}
+#jahWelcome.show{display:flex}
+#jahWelcomeCard{background:#2c1c11;border:2px solid var(--amber);border-radius:14px;padding:22px 20px;max-width:540px;width:100%;max-height:88vh;overflow-y:auto;color:var(--txt)}
+#jahWelcomeCard h2{margin:0 0 4px;color:var(--amber2);font-size:20px}
+#jahWelcomeCard .wsub{margin:4px 0 0;color:var(--dim);font-size:14px}
+#jahWelcomeCard ol{margin:10px 0 0;padding-left:22px;font-size:14px;line-height:1.55}
+#jahWelcomeCard ol li{margin:8px 0}
+#jahWelcomeCard ol li b{color:var(--amber2)}
+#jahWelcomeCard .wbtnrow{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+#jahGuide .btn,#jahWelcome .btn{min-height:48px;min-width:48px;font-size:15px;padding:12px 22px;border-radius:10px;border:1px solid var(--amber);background:transparent;color:var(--amber2);cursor:pointer;font-family:inherit}
+#jahWelcomeOk{font-weight:700;background:var(--amber)!important;color:#241610!important;border:none!important}
+#jahGuide{position:fixed;inset:0;z-index:99900;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.7)}
+#jahGuide.show{display:flex}
+#jahGuideCard{background:#2c1c11;border:1px solid var(--amber);border-radius:14px;max-width:680px;width:100%;max-height:86vh;overflow:auto;padding:20px 22px;color:var(--txt)}
+#jahGuideCard h2{margin-top:0;color:var(--amber2)}
+#jahGuideCard .gfeat{margin:0 0 14px;padding:10px 12px;background:#241610;border:1px solid var(--line);border-radius:10px}
+#jahGuideCard .gfeat b{color:var(--amber2)}
+#jahGuideCard .gfeat p{margin:4px 0 0;font-size:14px;line-height:1.5}
+#jahGuideCloseRow{display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+</style>
+<button id="jahGuideBtn" aria-label="Open the site guide" title="How to use this site">?</button>
+<div id="jahWelcome" aria-hidden="true">
+<div id="jahWelcomeCard" role="dialog" aria-modal="true" aria-label="Welcome to The Signature Cookbook">
+<h2>Welcome to The Signature Cookbook</h2>
+<p class="wsub">A million recipes, organized like a real cookbook &mdash; free forever. Here&rsquo;s how to use it:</p>
+<ol>
+<li><b>Pick a chapter.</b> The tabs up top are the cookbook chapters &mdash; Appetizers through Snacks.</li>
+<li><b>Open any recipe.</b> Every recipe has real quantities, ordered steps, time, and servings.</li>
+<li><b>Cook hands-free.</b> Tap &ldquo;Read aloud&rdquo; and the recipe reads itself to you, step by step.</li>
+<li><b>Keep it.</b> Copy any recipe or download it as a text file &mdash; yours to keep, free.</li>
+<li><b>The Archive.</b> The last tab holds everything: chapters, sections, A&ndash;Z, marching to a million.</li>
+</ol>
+<div class="wbtnrow">
+<button class="btn" id="jahWelcomeOk" type="button">OK &mdash; Got it ✓</button>
+<button class="btn" id="jahWelcomeFull" type="button">Full how-to guide</button>
+</div></div></div>
+<div id="jahGuide" aria-hidden="true">
+<div id="jahGuideCard" role="dialog" aria-modal="true" aria-label="How to use The Signature Cookbook">
+<div id="jahGuideCloseRow"><h2 style="margin:0">How to use this site</h2>
+<button class="btn" id="jahGuideClose" type="button">✕ Close</button></div>
+<div class="gfeat"><b>📖 Chapters</b><p><b>What:</b> the tab bar. <b>Does:</b> each tab is a cookbook chapter with its sections and recipes. <b>How:</b> tap a tab.</p></div>
+<div class="gfeat"><b>🍳 Recipes</b><p><b>What:</b> every recipe page. <b>Does:</b> ingredients with quantities, ordered steps, time, servings, difficulty. <b>How:</b> open any recipe from a chapter or the archive.</p></div>
+<div class="gfeat"><b>🔊 Read aloud</b><p><b>What:</b> hands-free cooking. <b>Does:</b> reads the whole recipe to you, step by step. <b>How:</b> tap &ldquo;Read aloud&rdquo; on any recipe.</p></div>
+<div class="gfeat"><b>📋 Copy &amp; ⬇ Download</b><p><b>What:</b> keepers. <b>Does:</b> copy a recipe to your clipboard or download it as a text file. <b>How:</b> the buttons on every recipe.</p></div>
+<div class="gfeat"><b>🗂️ The 1M Archive</b><p><b>What:</b> everything. <b>Does:</b> all recipes organized chapters → sections → A&ndash;Z, with the AI&rsquo;s Best of the Best on top and an Ask-the-AI box. <b>How:</b> the last tab.</p></div>
+<div class="gfeat"><b>🤖 Ask the AI</b><p><b>What:</b> the recipe finder. <b>Does:</b> type a dish or ingredient and it finds matching recipes. <b>How:</b> the box on the archive page.</p></div>
+<div class="btnrow" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">
+<button class="btn" id="jahGuideTour" type="button">▶ Show the welcome guide</button>
+<button class="btn" id="jahGuideClose2" type="button">✕ Close guide</button>
+</div></div></div>
+<script>(function(){try{
+var FLAG="jah-tour-seen-cookbook";
+var JAHPS=(function(){try{return (typeof JAHProfile!=="undefined")&&JAHProfile.store?JAHProfile.store:localStorage;}catch(e){return localStorage;}})();
+function ls(k,v){try{if(v===undefined)return JAHPS.get(k);JAHPS.set(k,v)}catch(e){return null}}
+var w=document.getElementById("jahWelcome"),guide=document.getElementById("jahGuide"),
+    guideCard=document.getElementById("jahGuideCard"),guideBtn=document.getElementById("jahGuideBtn");
+function openWelcome(){if(!w)return;w.classList.add("show");w.setAttribute("aria-hidden","false");
+  try{document.getElementById("jahWelcomeOk").focus({preventScroll:true})}catch(e){}}
+function closeWelcome(){if(!w)return;w.classList.remove("show");w.setAttribute("aria-hidden","true");ls(FLAG,"1")}
+document.getElementById("jahWelcomeOk").onclick=closeWelcome;
+document.getElementById("jahWelcomeFull").onclick=function(){closeWelcome();openGuide()};
+w.addEventListener("click",function(e){if(e.target===w)closeWelcome()});
+document.addEventListener("keydown",function(e){if(w.classList.contains("show")&&e.key==="Escape"){closeWelcome();e.preventDefault()}});
+function openGuide(){if(!guide)return;guide.classList.add("show");guide.setAttribute("aria-hidden","false");
+  try{guideCard.scrollTop=0;document.getElementById("jahGuideClose").focus({preventScroll:true})}catch(e){}}
+function closeGuide(){if(!guide)return;guide.classList.remove("show");guide.setAttribute("aria-hidden","true");
+  try{guideBtn.focus({preventScroll:true})}catch(e){}}
+guideBtn.onclick=openWelcome;
+document.getElementById("jahGuideClose").onclick=closeGuide;
+document.getElementById("jahGuideClose2").onclick=closeGuide;
+document.getElementById("jahGuideTour").onclick=function(){closeGuide();openWelcome()};
+guide.addEventListener("click",function(e){if(e.target===guide)closeGuide()});
+if(!ls(FLAG)){setTimeout(openWelcome,900)}
+}catch(e){}})();</script>
+<script src="js/cookbook.js"></script>
+<script src="js/signin.js"></script>
+<script src="js/godmode.js"></script>
+<script>
+(function () {
+  var mount = document.querySelector('header .booksearch') ||
+              document.querySelector('nav.jtabbar') ||
+              document.querySelector('header nav') ||
+              document.querySelector('header') ||
+              document.body;
+  if (window.JAHProfile && JAHProfile.ui) JAHProfile.ui.renderButton(mount);
+})();
+</script>
+<script>
+(function () {
+  if (window.JAHProfile && JAHProfile.ui) {
+    var mount = document.querySelector('header') || document.body;
+    JAHProfile.ui.renderGreeting(mount);
+  }
+})();
+</script>
+</body>
+</html>
