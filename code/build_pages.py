@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Builds all static pages for The Signature Cookbook from templates + data."""
-import json, os
+import json, os, datetime
+STAMP = datetime.date.today().isoformat()
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -122,6 +123,10 @@ input[type=text]{background:#1c100a;color:var(--txt);border:2px solid var(--line
 .rlink:hover{color:var(--tom2)}
 .hits li{margin:6px 0}
 .hits a{color:var(--tom2)}
+#cookMode .btn.big{min-height:64px;font-size:1.25rem}
+#cookMode .btn.big:disabled{opacity:.35}
+.azbody{min-height:8px}
+.counter{font-size:1.15rem;font-weight:800;color:var(--tom2)}
 </style>"""
 
 WELCOME_CSS = """<style>
@@ -156,7 +161,7 @@ WELCOME_HTML = """<button id="jahGuideBtn" aria-label="Open the site guide" titl
 <p class="wsub">A million recipes, organized like a real cookbook &mdash; free forever. Here&rsquo;s how to use it:</p>
 <ol>
 <li><b>Pick a chapter.</b> The tabs up top are the cookbook chapters &mdash; Appetizers through Snacks.</li>
-<li><b>Open any recipe.</b> Every recipe has real quantities, ordered steps, time, and servings.</li>
+<li><b>Open any recipe.</b> Every recipe has real quantities, ordered steps, time, and servings. Tap <b>🍳 Cook mode</b> for one-step-at-a-time guidance with timers.</li>
 <li><b>Cook hands-free.</b> Tap &ldquo;Read aloud&rdquo; and the recipe reads itself to you, step by step.</li>
 <li><b>Keep it.</b> Copy any recipe or download it as a text file &mdash; yours to keep, free.</li>
 <li><b>The Archive.</b> The last tab holds everything: chapters, sections, A&ndash;Z, marching to a million.</li>
@@ -171,6 +176,8 @@ WELCOME_HTML = """<button id="jahGuideBtn" aria-label="Open the site guide" titl
 <button class="btn" id="jahGuideClose" type="button">✕ Close</button></div>
 <div class="gfeat"><b>📖 Chapters</b><p><b>What:</b> the tab bar. <b>Does:</b> each tab is a cookbook chapter with its sections and recipes. <b>How:</b> tap a tab.</p></div>
 <div class="gfeat"><b>🍳 Recipes</b><p><b>What:</b> every recipe page. <b>Does:</b> ingredients with quantities, ordered steps, time, servings, difficulty. <b>How:</b> open any recipe from a chapter or the archive.</p></div>
+<div class="gfeat"><b>🍳 Cook mode</b><p><b>What:</b> hands-on guidance. <b>Does:</b> walks you through one step at a time with big buttons, built-in timers for every timed step, and a read-aloud option. <b>How:</b> tap “🍳 Cook mode” on any recipe.</p></div>
+<div class="gfeat"><b>🤖 Cooking AI</b><p><b>What:</b> the recipe helper. <b>Does:</b> answers substitutions, timing, servings, and ingredient questions from the recipe. <b>How:</b> the “Ask the cooking AI” box on every recipe.</p></div>
 <div class="gfeat"><b>🔊 Read aloud</b><p><b>What:</b> hands-free cooking. <b>Does:</b> reads the whole recipe to you, step by step. <b>How:</b> tap &ldquo;Read aloud&rdquo; on any recipe.</p></div>
 <div class="gfeat"><b>📋 Copy &amp; ⬇ Download</b><p><b>What:</b> keepers. <b>Does:</b> copy a recipe to your clipboard or download it as a text file. <b>How:</b> the buttons on every recipe.</p></div>
 <div class="gfeat"><b>🗂️ The 1M Archive</b><p><b>What:</b> everything. <b>Does:</b> all recipes organized chapters → sections → A&ndash;Z, with the AI&rsquo;s Best of the Best on top and an Ask-the-AI box. <b>How:</b> the last tab.</p></div>
@@ -282,8 +289,8 @@ and it reads itself to you while your hands are busy.</p>
 </div>
 <div class="card">
 <h3>📊 By the numbers</h3>
-<p><b id="recipeCount">%d</b> recipes on the shelves and counting &mdash; marching to a million.</p>
-<p class="hint">Counts stamped 2026-10-05 · the cookbook grows every 2 hours.</p>
+<p class="counter"><b id="recipeCount">%d</b> / 1,000,000 recipes</p>
+<p class="hint">On the shelves and counting · grows every 2 hours (stamped %%STAMP%%).</p>
 </div>
 <h2>Chapters</h2>
 <div class="grid">
@@ -311,7 +318,7 @@ cbLoadIdx().then(function(rows){
   document.getElementById("chapSecs").textContent = Object.keys(secs).length + " sections";
   var h = "";
   Object.keys(secs).sort().forEach(function(s){
-    h += '<details class="az" open><summary>📑 ' + cbesc(s) + ' (' + secs[s].length + ')</summary>';
+    h += '<details class="az"><summary>📑 ' + cbesc(s) + ' (' + secs[s].length + ')</summary>';
     secs[s].forEach(function(r){
       h += '<div class="row"><a class="rlink" href="archive.html?recipe=' + r.id + '"><b>' + cbesc(r.n) + '</b></a>' +
            ' <span class="hint">⏱ ' + r.t + ' min · ' + cbesc(r.d) + '</span></div>';
@@ -344,8 +351,8 @@ def build_archive(stats):
 <div id="archiveList">
 <div class="card">
 <h3>🗂️ The 1M Archive</h3>
-<p><b id="archCount">%d</b> recipes · chapters → sections → A&ndash;Z · marching to 1,000,000.</p>
-<p class="hint">Counts stamped 2026-10-05 · grows every 2 hours.</p>
+<p class="counter"><b id="archCount">%d</b> / 1,000,000 recipes</p>
+<p class="hint">Chapters → sections → A&ndash;Z · tap a letter to open it · grows every 2 hours (stamped %%STAMP%%).</p>
 </div>
 <div id="azTree"><p class="hint">Loading the shelves…</p></div>
 </div>
@@ -370,36 +377,55 @@ function cbShowRecipe(id){
   });
 }
 cbLoadIdx().then(function(rows){
-  document.getElementById("archCount").textContent = rows.length;
-  var tree = {};
+  document.getElementById("archCount").textContent = rows.length.toLocaleString("en-US");
+  var tree = {}, groups = {}, gid = 0;
   rows.forEach(function(r){
     tree[r.c] = tree[r.c] || {};
     tree[r.c][r.s] = tree[r.c][r.s] || {};
     var L = (r.n[0] || "#").toUpperCase();
-    tree[r.c][r.s][L] = tree[r.c][r.s][L] || [];
-    tree[r.c][r.s][L].push(r);
+    var g = tree[r.c][r.s][L];
+    if(!g){ g = {rows: []}; tree[r.c][r.s][L] = g; }
+    g.rows.push(r);
   });
   var h = "";
   CB_CHAPTERS.forEach(function(ch){
     var secs = tree[ch[2]];
     if(!secs) return;
-    var count = 0; Object.keys(secs).forEach(function(s){ Object.keys(secs[s]).forEach(function(L){ count += secs[s][L].length; }); });
+    var count = 0;
+    Object.keys(secs).forEach(function(s){ Object.keys(secs[s]).forEach(function(L){ count += secs[s][L].rows.length; }); });
     h += '<details class="az"><summary>' + ch[1] + ' ' + cbesc(ch[2]) + ' (' + count + ')</summary>';
     Object.keys(secs).sort().forEach(function(s){
-      h += '<details class="az"><summary>📑 ' + cbesc(s) + '</summary>';
+      var sc = 0;
+      Object.keys(secs[s]).forEach(function(L){ sc += secs[s][L].rows.length; });
+      h += '<details class="az"><summary>\U0001F4D1 ' + cbesc(s) + ' (' + sc + ')</summary>';
       Object.keys(secs[s]).sort().forEach(function(L){
-        h += '<details class="az"><summary>' + cbesc(L) + ' (' + secs[s][L].length + ')</summary>';
-        secs[s][L].sort(function(a,b){return a.n<b.n?-1:1}).forEach(function(r){
-          h += '<div class="row"><a href="archive.html?recipe=' + r.id + '"><b>' + cbesc(r.n) + '</b></a>' +
-               ' <span class="hint">⏱ ' + r.t + ' min · ' + cbesc(r.d) + ' · ' + r.id + '</span></div>';
-        });
-        h += '</details>';
+        gid++;
+        groups[gid] = secs[s][L].rows;
+        h += '<details class="az" data-gid="' + gid + '"><summary>' + cbesc(L) + ' (' + secs[s][L].rows.length + ')</summary><div class="azbody"><p class="hint">Opening\u2026</p></div></details>';
       });
       h += '</details>';
     });
     h += '</details>';
   });
-  document.getElementById("azTree").innerHTML = h;
+  var zt = document.getElementById("azTree");
+  zt.innerHTML = h;
+  /* lazy: a letter's rows enter the DOM only the first time it is opened */
+  zt.addEventListener("toggle", function(e){
+    var d = e.target;
+    if(!d || d.tagName !== "DETAILS" || !d.hasAttribute("data-gid")) return;
+    if(!d.open || d.getAttribute("data-filled")) return;
+    d.setAttribute("data-filled", "1");
+    var grp = groups[parseInt(d.getAttribute("data-gid"), 10)] || [];
+    grp.sort(function(a, b){ return a.n < b.n ? -1 : 1; });
+    var hh = "";
+    for(var i = 0; i < grp.length; i++){
+      var r = grp[i];
+      hh += '<div class="row"><a href="archive.html?recipe=' + r.id + '"><b>' + cbesc(r.n) + '</b></a>' +
+            ' <span class="hint">\u23f1 ' + r.t + ' min \u00b7 ' + cbesc(r.d) + ' \u00b7 ' + r.id + '</span></div>';
+    }
+    var body = d.querySelector(".azbody");
+    if(body) body.innerHTML = hh;
+  }, true);
   var m = /[?&]recipe=(JAH-RECIPE-\\d{6})/.exec(location.search);
   if(m) cbShowRecipe(m[1]);
 });
@@ -448,7 +474,7 @@ def main():
     for slug, emoji, name, tag in CHAPTERS:
         pages[slug + ".html"] = build_chapter(slug, emoji, name, tag, stats)
     for fn, html in pages.items():
-        open(os.path.join(ROOT, fn), "w").write(html)
+        open(os.path.join(ROOT, fn), "w").write(html.replace("%STAMP%", STAMP))
     build_sitemap(stats["total"])
     build_api(stats)
     print("PAGES: %d built, %d recipes" % (len(pages), stats["total"]))

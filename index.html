@@ -49,6 +49,10 @@ input[type=text]{background:#1c100a;color:var(--txt);border:2px solid var(--line
 .rlink:hover{color:var(--tom2)}
 .hits li{margin:6px 0}
 .hits a{color:var(--tom2)}
+#cookMode .btn.big{min-height:64px;font-size:1.25rem}
+#cookMode .btn.big:disabled{opacity:.35}
+.azbody{min-height:8px}
+.counter{font-size:1.15rem;font-weight:800;color:var(--tom2)}
 </style>
 </head>
 <body>
@@ -72,8 +76,8 @@ and it reads itself to you while your hands are busy.</p>
 </div>
 <div class="card">
 <h3>📊 By the numbers</h3>
-<p><b id="recipeCount">900</b> recipes on the shelves and counting &mdash; marching to a million.</p>
-<p class="hint">Counts stamped 2026-10-05 · the cookbook grows every 2 hours.</p>
+<p class="counter"><b id="recipeCount">900</b> / 1,000,000 recipes</p>
+<p class="hint">On the shelves and counting · grows every 2 hours (stamped 2026-10-05).</p>
 </div>
 <h2>Chapters</h2>
 <div class="grid">
@@ -121,7 +125,7 @@ and it reads itself to you while your hands are busy.</p>
 <p class="wsub">A million recipes, organized like a real cookbook &mdash; free forever. Here&rsquo;s how to use it:</p>
 <ol>
 <li><b>Pick a chapter.</b> The tabs up top are the cookbook chapters &mdash; Appetizers through Snacks.</li>
-<li><b>Open any recipe.</b> Every recipe has real quantities, ordered steps, time, and servings.</li>
+<li><b>Open any recipe.</b> Every recipe has real quantities, ordered steps, time, and servings. Tap <b>🍳 Cook mode</b> for one-step-at-a-time guidance with timers.</li>
 <li><b>Cook hands-free.</b> Tap &ldquo;Read aloud&rdquo; and the recipe reads itself to you, step by step.</li>
 <li><b>Keep it.</b> Copy any recipe or download it as a text file &mdash; yours to keep, free.</li>
 <li><b>The Archive.</b> The last tab holds everything: chapters, sections, A&ndash;Z, marching to a million.</li>
@@ -136,6 +140,8 @@ and it reads itself to you while your hands are busy.</p>
 <button class="btn" id="jahGuideClose" type="button">✕ Close</button></div>
 <div class="gfeat"><b>📖 Chapters</b><p><b>What:</b> the tab bar. <b>Does:</b> each tab is a cookbook chapter with its sections and recipes. <b>How:</b> tap a tab.</p></div>
 <div class="gfeat"><b>🍳 Recipes</b><p><b>What:</b> every recipe page. <b>Does:</b> ingredients with quantities, ordered steps, time, servings, difficulty. <b>How:</b> open any recipe from a chapter or the archive.</p></div>
+<div class="gfeat"><b>🍳 Cook mode</b><p><b>What:</b> hands-on guidance. <b>Does:</b> walks you through one step at a time with big buttons, built-in timers for every timed step, and a read-aloud option. <b>How:</b> tap “🍳 Cook mode” on any recipe.</p></div>
+<div class="gfeat"><b>🤖 Cooking AI</b><p><b>What:</b> the recipe helper. <b>Does:</b> answers substitutions, timing, servings, and ingredient questions from the recipe. <b>How:</b> the “Ask the cooking AI” box on every recipe.</p></div>
 <div class="gfeat"><b>🔊 Read aloud</b><p><b>What:</b> hands-free cooking. <b>Does:</b> reads the whole recipe to you, step by step. <b>How:</b> tap &ldquo;Read aloud&rdquo; on any recipe.</p></div>
 <div class="gfeat"><b>📋 Copy &amp; ⬇ Download</b><p><b>What:</b> keepers. <b>Does:</b> copy a recipe to your clipboard or download it as a text file. <b>How:</b> the buttons on every recipe.</p></div>
 <div class="gfeat"><b>🗂️ The 1M Archive</b><p><b>What:</b> everything. <b>Does:</b> all recipes organized chapters → sections → A&ndash;Z, with the AI&rsquo;s Best of the Best on top and an Ask-the-AI box. <b>How:</b> the last tab.</p></div>
