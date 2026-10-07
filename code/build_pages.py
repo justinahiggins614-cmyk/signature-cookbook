@@ -244,6 +244,7 @@ def shell(title, desc, active_tab, body):
 __CSS__
 </head>
 <body>
+<script src="js/cookbook.js"></script>
 <div class="wrap">
 <header>
 <p class="kicker">SITE 35 OF 35 · THE JAH NETWORK</p>
@@ -257,7 +258,6 @@ __NAV__
 </div>
 __WELCOME_CSS__
 __WELCOME_HTML__
-<script src="js/cookbook.js"></script>
 __SIGNIN__
 </body>
 </html>"""
@@ -376,6 +376,7 @@ function cbShowRecipe(id){
     document.getElementById("archiveList").style.display = "none";
   });
 }
+function cbTreeGo(){
 cbLoadIdx().then(function(rows){
   document.getElementById("archCount").textContent = rows.length.toLocaleString("en-US");
   var tree = {}, groups = {}, gid = 0;
@@ -428,7 +429,11 @@ cbLoadIdx().then(function(rows){
   }, true);
   var m = /[?&]recipe=(JAH-RECIPE-\\d{6})/.exec(location.search);
   if(m) cbShowRecipe(m[1]);
+}).catch(function(){
+  document.getElementById("azTree").innerHTML = '<p class="hint">The archive shelves could not be reached — check your connection.</p><p><button class="btn sm" onclick="cbTreeGo()">&#x1F501; Retry</button></p>';
 });
+}
+cbTreeGo();
 cbGetRecipe("%s").then(function(r){
   document.getElementById("bestRecipe").innerHTML = cbRecipeHTML(r);
 }).catch(function(){

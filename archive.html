@@ -56,6 +56,7 @@ input[type=text]{background:#1c100a;color:var(--txt);border:2px solid var(--line
 </style>
 </head>
 <body>
+<script src="js/cookbook.js"></script>
 <div class="wrap">
 <header>
 <p class="kicker">SITE 35 OF 35 · THE JAH NETWORK</p>
@@ -104,6 +105,7 @@ function cbShowRecipe(id){
     document.getElementById("archiveList").style.display = "none";
   });
 }
+function cbTreeGo(){
 cbLoadIdx().then(function(rows){
   document.getElementById("archCount").textContent = rows.length.toLocaleString("en-US");
   var tree = {}, groups = {}, gid = 0;
@@ -156,7 +158,11 @@ cbLoadIdx().then(function(rows){
   }, true);
   var m = /[?&]recipe=(JAH-RECIPE-\d{6})/.exec(location.search);
   if(m) cbShowRecipe(m[1]);
+}).catch(function(){
+  document.getElementById("azTree").innerHTML = '<p class="hint">The archive shelves could not be reached — check your connection.</p><p><button class="btn sm" onclick="cbTreeGo()">&#x1F501; Retry</button></p>';
 });
+}
+cbTreeGo();
 cbGetRecipe("JAH-RECIPE-000010").then(function(r){
   document.getElementById("bestRecipe").innerHTML = cbRecipeHTML(r);
 }).catch(function(){
@@ -249,7 +255,6 @@ document.getElementById("jahGuideTour").onclick=function(){closeGuide();openWelc
 guide.addEventListener("click",function(e){if(e.target===guide)closeGuide()});
 if(!ls(FLAG)){setTimeout(openWelcome,900)}
 }catch(e){}})();</script>
-<script src="js/cookbook.js"></script>
 <script src="js/signin.js"></script>
 <script src="js/godmode.js"></script>
 <script>
