@@ -1,15 +1,15 @@
 {
- "total": 71700,
+ "total": 72300,
  "per_chapter": {
-  "Appetizers": 8073,
-  "Soups & Salads": 8011,
-  "Mains": 8055,
-  "Sides": 8141,
-  "Breads": 7991,
-  "Desserts": 8023,
-  "Drinks": 7355,
-  "Breakfast": 7965,
-  "Snacks": 8086
+  "Appetizers": 8140,
+  "Soups & Salads": 8080,
+  "Mains": 8128,
+  "Sides": 8206,
+  "Breads": 8061,
+  "Desserts": 8099,
+  "Drinks": 7400,
+  "Breakfast": 8033,
+  "Snacks": 8153
  },
  "goal": 1000000,
  "updated": "2026-10-05"
