@@ -1,7 +1,7 @@
 {
  "site": "The Signature Cookbook",
  "url": "https://justinahiggins614-cmyk.github.io/signature-cookbook/",
- "recipes": 93300,
+ "recipes": 93900,
  "goal": 1000000,
  "chapters": [
   "Appetizers",
@@ -15,15 +15,15 @@
   "Snacks"
  ],
  "per_chapter": {
-  "Appetizers": 10491,
-  "Soups & Salads": 10373,
-  "Mains": 10482,
-  "Sides": 10570,
-  "Breads": 10394,
-  "Desserts": 10501,
-  "Drinks": 9568,
-  "Breakfast": 10392,
-  "Snacks": 10529
+  "Appetizers": 10555,
+  "Soups & Salads": 10450,
+  "Mains": 10547,
+  "Sides": 10632,
+  "Breads": 10465,
+  "Desserts": 10561,
+  "Drinks": 9640,
+  "Breakfast": 10454,
+  "Snacks": 10596
  },
  "updated": "2026-10-05",
  "free": true
