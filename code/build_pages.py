@@ -247,7 +247,7 @@ __CSS__
 <script src="js/cookbook.js"></script>
 <div class="wrap">
 <header>
-<p class="kicker">SITE 35 OF 35 · THE JAH NETWORK</p>
+<p class="kicker">SITE 33 OF 39 · THE JAH NETWORK</p>
 <h1>📖 The Signature Cookbook</h1>
 <p class="hint">A million recipes, organized like a cookbook. Free forever.</p>
 </header>
